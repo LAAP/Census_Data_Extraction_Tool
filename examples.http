@@ -1,0 +1,98 @@
+### Census Grid Stats API Examples
+
+### Health Check
+GET http://localhost:8000/health
+
+### Version Info
+GET http://localhost:8000/version
+
+### Basic Request - Address
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "address": "1600 Pennsylvania Avenue NW, Washington, DC",
+  "cell_km": 1.0,
+  "acs_year": 2023,
+  "include_lodes": false
+}
+
+### Basic Request - Coordinates
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "lat": 42.3601,
+  "lon": -71.0589,
+  "cell_km": 1.0,
+  "acs_year": 2023,
+  "include_lodes": false
+}
+
+### Larger Grid Cell
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "address": "Times Square, New York, NY",
+  "cell_km": 2.0,
+  "acs_year": 2023,
+  "include_lodes": true
+}
+
+### With LODES Data
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "lat": 37.7749,
+  "lon": -122.4194,
+  "cell_km": 1.5,
+  "acs_year": 2023,
+  "include_lodes": true,
+  "lodes_year": 2022
+}
+
+### Different ACS Year
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "address": "1 Hacker Way, Menlo Park, CA",
+  "cell_km": 1.0,
+  "acs_year": 2022,
+  "include_lodes": false
+}
+
+### Small Grid Cell
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "lat": 40.7128,
+  "lon": -74.0060,
+  "cell_km": 0.5,
+  "acs_year": 2023,
+  "include_lodes": false
+}
+
+### Error Case - Invalid Address
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "address": "Invalid Address That Does Not Exist",
+  "cell_km": 1.0,
+  "acs_year": 2023,
+  "include_lodes": false
+}
+
+### Error Case - Missing Parameters
+POST http://localhost:8000/grid_stats
+Content-Type: application/json
+
+{
+  "cell_km": 1.0,
+  "acs_year": 2023,
+  "include_lodes": false
+}
